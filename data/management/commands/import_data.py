@@ -40,12 +40,19 @@ class Command(BaseCommand):
                     if row[0] == "CONSU" and len(row) == 5:
                         timeformat_cons = "%H%M"
                         check_file_exist = Record.objects.filter(file_gen_number=file_name)
+                        m_date = datetime.datetime.strptime(row[2], dateformat)
+                        m_time = datetime.datetime.strptime(row[3], timeformat_cons)
                         if len(check_file_exist) == 0:
-                            new_meter = Meter.objects.create(
+                            remove_existing_record = Meter.objects.filter(
+                                meter_number = row[1],
+                                measurement_date = m_date,
+                                measurement_time = m_time
+                            ).delete()
+                            new_meter_record = Meter.objects.create(
                                 record = Record.objects.last(),
                                 meter_number = row[1],
-                                measurement_date = datetime.datetime.strptime(row[2], dateformat),
-                                measurement_time = datetime.datetime.strptime(row[3], timeformat_cons),
+                                measurement_date = m_date,
+                                measurement_time = m_time,
                                 consumption = row[4]
                             )
                 csvfile.close()
