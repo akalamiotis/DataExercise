@@ -28,12 +28,16 @@ $ make run
 To import files form "sample_data" folder into PostgreSQL database:
 $ make import_data
 
+To run all tests:
+$ make tests
 
 Additional available commands
 =============================
 
-Django migrations:
+Django make migrations:
 $ make makemigrations
+
+Django migrate:
 $ make migrate
 
 Django shell:

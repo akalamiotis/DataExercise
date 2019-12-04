@@ -1,5 +1,5 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
 from django.utils.timezone import now
 
 
@@ -30,4 +30,3 @@ class Meter(models.Model):
     measurement_date = models.DateField()
     measurement_time = models.TimeField()
     consumption = models.DecimalField(decimal_places=2, max_digits=6)
-
