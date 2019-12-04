@@ -22,6 +22,10 @@ migrate: ## Perform django migrate in containers.
 shell: ## Perform django migrate in containers.
 	docker-compose run web python /code/manage.py shell
 
+.PHONY: tests
+tests: ## Perform django migrate in containers.
+	docker-compose run web python /code/manage.py test
+
 .PHONY: import_data
 import_data: ## Load data into the database
 	docker-compose run web python /code/manage.py import_data

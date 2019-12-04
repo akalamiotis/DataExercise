@@ -1,12 +1,14 @@
-import os
-import datetime
 import csv
+import datetime
+import os
+
+from data.models import Meter, Record
 from django.conf import settings
-from django.core.management.base import BaseCommand, CommandError
 from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-from data.models import Record, Meter
 from django.core.files.storage import default_storage
+from django.core.management.base import BaseCommand, CommandError
+from django.utils.translation import gettext_lazy as _
+
 
 class Command(BaseCommand):
     help = 'load the data from files in sample_data folder into the database'
@@ -56,6 +58,3 @@ class Command(BaseCommand):
                                 consumption = row[4]
                             )
                 csvfile.close()
-
-
-
